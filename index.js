@@ -18,8 +18,6 @@ const getRick = async () =>{
 }
 getRick();
 
-
-
 const apiCountry = async(lng) =>{
     const res2 = await fetch(`https://restcountries.com/v3.1/lang/${lng}`);
     const data2 = await res2.json();
