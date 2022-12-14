@@ -1,12 +1,24 @@
 import fetch from 'node-fetch';
-const apiRick = async (id) =>{
-    const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
-    const data = await res.json();
-    const {name, species} = data;
-    console.log(
-        `Nombre: ${name}
-Especie: ${species}`);
-}    
+// const apiRick = async (id) =>{
+//     const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+//     const data = await res.json();
+//     const {name, species} = data;
+//     console.log(
+//         `Nombre: ${name}
+// Especie: ${species}`);
+// }    
+const getRick = async () =>{
+    const resp = await fetch('https://rickandmortyapi.com/api/character/');
+    const {results} = await resp.json();
+    const info = results.map(data =>({
+        name: data.name,
+        specie: data.species,
+    }));
+    console.log(info);
+}
+getRick();
+
+
 
 const apiCountry = async(lng) =>{
     const res2 = await fetch(`https://restcountries.com/v3.1/lang/${lng}`);
@@ -17,9 +29,9 @@ const apiCountry = async(lng) =>{
     console.log(`País: ${common}`);
 }
 apiCountry('spa');
-apiRick(1);
 
-// // console.log("Hola");
+
+
 //     input: process.stdin,    
 //     output: process.stdout
 //   });
@@ -49,10 +61,6 @@ apiRick(1);
     //     console.log(fifa);
     // }
     // apiCountry('mexico');
-    
-    
-    
-    
     
     // Object.keys(info).map(key =>{
             // const readline = require('readline').createInterface({
