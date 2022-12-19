@@ -14,19 +14,17 @@ const getRick = async () =>{
         name: data.name,
         specie: data.species,
     }));
-    console.log(info);
+    return info;
 }
-getRick();
+console.log(await getRick());
 
-const apiCountry = async(lng) =>{
-    const res2 = await fetch(`https://restcountries.com/v3.1/lang/${lng}`);
-    const data2 = await res2.json();
-    const [info] = data2;
-    const {name:{common}} = info;
-    // // const {common} = name;
-    console.log(`País: ${common}`);
+const apiCountry = async(lang) =>{
+    const response = await fetch(`https://restcountries.com/v3.1/lang/${lang}`);
+    const data = await response.json();
+    const countries = data.map((country) => country.name.common);
+    return countries;
 }
-apiCountry('spa');
+console.log(await apiCountry('spa'));
 
 
 
